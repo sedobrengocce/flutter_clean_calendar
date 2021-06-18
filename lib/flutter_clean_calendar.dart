@@ -94,6 +94,7 @@ class Calendar extends StatefulWidget {
   final Color? bottomBarArrowColor;
   final Color? bottomBarColor;
   final String? expandableDateFormat;
+  final bool enableSwipe;
 
   Calendar({
     this.onMonthChanged,
@@ -123,6 +124,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarArrowColor,
     this.bottomBarColor,
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
+    this.enableSwipe = true,
   });
 
   @override
@@ -210,10 +212,10 @@ class _CalendarState extends State<Calendar> {
   Widget get calendarGridView {
     return Container(
       child: SimpleGestureDetector(
-        onSwipeUp: _onSwipeUp,
-        onSwipeDown: _onSwipeDown,
-        onSwipeLeft: _onSwipeLeft,
-        onSwipeRight: _onSwipeRight,
+        onSwipeUp: (widget.enableSwipe) ? _onSwipeUp : null,
+        onSwipeDown: (widget.enableSwipe) ? _onSwipeDown : null,
+        onSwipeLeft: (widget.enableSwipe) ? _onSwipeLeft : null,
+        onSwipeRight: (widget.enableSwipe) ?_onSwipeRight : null,
         swipeConfig: SimpleSwipeConfig(
           verticalThreshold: 10.0,
           horizontalThreshold: 40.0,
